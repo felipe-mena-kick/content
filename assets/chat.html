@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --kick-green: #53fc18;
+            /* --kick-bg: #0b0e0f; */
+            /* --kick-bg: transparent;
+            --kick-hover: #191f23; */
+            /* --border: #24272c; */
+        }
+
+        body { 
+            background-color: transparent; 
+            /* background-color: #1a1d20;  */
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            font-family: 'Inter', -apple-system, sans-serif; 
+        }
+
+        .kick-chat {
+            width: 340px;
+            height: 720px;
+            background: var(--kick-bg);
+            border: none;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* box-shadow: 0 10px 30px rgba(0,0,0,0.5); */
+        }
+
+        .header { 
+            /* padding: 16px; 
+            border-bottom: 1px solid var(--border); 
+            color: white; 
+            font-weight: 800; 
+            font-size: 13px; 
+            letter-spacing: 0.5px; */
+        }
+
+        .feed-window {
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+            background: var(--kick-bg);
+        }
+
+        /* The container that actually moves */
+        .scroller {
+            display: flex;
+            flex-direction: column;
+            /* transform is driven by JS so the snapshot serializer captures the live position */
+        }
+
+        .msg {
+            padding: 2px 16px;
+            font-size: 13px;
+            color: #efefef;
+            line-height: 1.4;
+            min-height: 20px;
+        }
+
+        .msg:hover { background: var(--kick-hover); }
+
+        .user { font-weight: 700; margin-right: 6px; }
+        .green { color: var(--kick-green); }
+        .blue { color: #00e5ff; }
+        .purple { color: #a335ee; }
+        .orange { color: #ff9100; }
+        .badge { background: var(--kick-green); width: 14px; height: 14px; display: inline-block; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+
+        .footer { padding: 15px; border-top: 1px solid var(--border); background: var(--kick-bg); }
+        .input-sim { 
+            background: transparent; 
+            /* background: #191f23;  */
+            padding: 12px; 
+            border-radius: 6px; 
+            color: #707070; 
+            font-size: 13px; 
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="kick-chat">
+    <!-- <div class="header">CHAT</div> -->
+    <div class="feed-window">
+        <div class="scroller">
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>KICK IS KING</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>CLIP THATTTTT</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>LOL NO WAY</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>? ? ? ? ? ? ?</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+              <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>KICK IS KING</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>CLIP THATTTTT</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>LOL NO WAY</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>? ? ? ? ? ? ?</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+              <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>KICK IS KING</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>CLIP THATTTTT</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>LOL NO WAY</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>? ? ? ? ? ? ?</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+            <div class="msg"><span class="user green">Gamer77:</span>HE'S CRACKED</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>actually insane movement</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Don't forget to follow the channel!</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>WE GOING UP</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>$50 says he wins this</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>EZ EZ EZ EZ</div>
+            <div class="msg"><span class="user green">Gamer77:</span>LMAOOOOO</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>SHEESH</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>massive dub</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>Check the discord guys</div>
+            <div class="msg"><span class="user green">Gamer77:</span>10/10 content</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>RIP Headphones</div>
+            <div class="msg"><span class="badge"></span><span class="user green">ModBot:</span>Welcome to the stream! Keep it PMA.</div>
+            <div class="msg"><span class="user blue">X_Slayer_X:</span>LFG!!! 💚</div>
+            <div class="msg"><span class="user orange">DonoKing:</span>Did you see that shot?!</div>
+            <div class="msg"><span class="user purple">VibeCheck:</span>W stream today fr</div>
+        </div>
+    </div>
+    <!-- <div class="footer">
+        <div class="input-sim">Send a message</div>
+    </div> -->
+</div>
+
+
+<script>
+(function () {
+    var scroller = document.querySelector('.scroller');
+    var totalScroll = 1000; // px — matches the old translateY(-1000px) target
+    var steps = 20;
+    var stepInterval = 30000 / steps; // 1500 ms per step
+    var step = 0;
+
+    setInterval(function () {
+        step = (step + 1) % steps;
+        scroller.style.transform = 'translateY(-' + (step * (totalScroll / steps)) + 'px)';
+    }, stepInterval);
+})();
+</script>
+
+</body>
+</html>
