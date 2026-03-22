@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <svg width="300" height="160" viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="160" fill="#1a1a1a" />
+
+    <text x="15" y="25" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#888">MARKET_SIM_V.2</text>
+    <circle cx="280" cy="20" r="4" fill="#ff3e3e">
+      <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite" />
+    </circle>
+    <text x="245" y="24" font-family="Arial, sans-serif" font-size="10" fill="#ff3e3e">LIVE</text>
+
+    <text x="15" y="60" font-family="monospace" font-size="14" fill="#aaa">IDX_VALUE:</text>
+    <text x="110" y="60" font-family="monospace" font-size="22" font-weight="bold" fill="#00ff88">
+      $<tspan id="price">42105.01</tspan>
+    </text>
+
+    <!-- <path d="M15 110 L40 105 L65 115 L90 95 L115 105 L140 85 L165 100 L190 90 L215 110 L240 100 L285 115"
+          fill="none" stroke="#00ff88" stroke-width="2" stroke-dasharray="300" stroke-dashoffset="300">
+      <animate attributeName="stroke-dashoffset" values="300;0" dur="4s" repeatCount="indefinite" />
+    </path> -->
+
+    <text x="15" y="140" font-family="monospace" font-size="12" fill="#666">
+      VOL: <tspan id="vol" fill="#ddd">1.42M</tspan>
+      | LOAD: <tspan id="load" fill="#ddd">88%</tspan>
+    </text>
+
+    <script type="text/javascript">
+      setInterval(() => {
+        const price = document.getElementById('price');
+        const vol = document.getElementById('vol');
+        const load = document.getElementById('load');
+
+        // Randomize numbers
+        price.textContent = (42000 + Math.random() * 200).toFixed(2);
+        vol.textContent = (Math.random() * 5).toFixed(2) + "M";
+        load.textContent = Math.floor(Math.random() * 100) + "%";
+
+        // Color flicker on change
+        price.setAttribute('fill', Math.random() > 0.5 ? '#00ff88' : '#ffffff');
+      }, 300);
+    </script>
+  </svg>
+
+  <script>
+  function sendFrame() {
+    html2canvas(document.body, { backgroundColor: null }).then((canvas) => {
+      window.parent.postMessage(
+        { type: 'overlay-frame', imageData: canvas.toDataURL('image/png') },
+        '*'
+      );
+    });
+    setTimeout(sendFrame, 1000 / 30); // 30fps
+  }
+  window.addEventListener('load', sendFrame);
+</script>
+</body>
+</html>

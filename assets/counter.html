@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .counter-container {
+      text-align: center;
+    }
+
+    .counter {
+      font-size: 5rem;
+      font-weight: 700;
+       color: red; 
+      /* text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); */
+      position: relative;
+      display: inline-block;
+      min-width: 250px;
+    }
+
+    .counter.animate {
+      animation: pulse 0.4s ease-out;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        color: #fff;
+      }
+      50% {
+        transform: scale(1.15);
+        color: #5e5e5e76;
+      }
+      100% {
+        transform: scale(1);
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="counter-container">
+    <div class="counter" id="counter">0</div>
+  </div>
+
+  <script>
+    let count = 0;
+    const counterEl = document.getElementById('counter');
+
+    function updateDisplay() {
+      count++;
+      counterEl.textContent = count;
+      counterEl.classList.remove('animate');
+      void counterEl.offsetWidth;
+      counterEl.classList.add('animate');
+    }
+
+    setInterval(updateDisplay, 1000);
+  </script>
+
+<script>
+  function sendFrame() {
+    html2canvas(document.body, { backgroundColor: null }).then((canvas) => {
+      window.parent.postMessage(
+        { type: 'overlay-frame', imageData: canvas.toDataURL('image/png') },
+        '*'
+      );
+    });
+    setTimeout(sendFrame, 1000 / 30); // 30fps
+  }
+  window.addEventListener('load', sendFrame);
+</script>
+
+</body>
+</html>
