@@ -3,21 +3,25 @@
   "voices": [
     {
       "language": "en-US", "voice": "female", "engine": "piper",
-      "model":  { "path": "en-US/en_US-libritts_r-medium.onnx",      "bytes": 82420000, "sha256": "..." },
-      "config": { "path": "en-US/en_US-libritts_r-medium.onnx.json", "bytes": 20100,    "sha256": "..." },
-      "phonemes": { "path": "shared/espeak-ng-data.zip", "bytes": 11000000, "sha256": "..." },
+      "model":  { "path": "en-US/en_US-libritts_r-medium.onnx",      "bytes": 78529840, "sha256": "8cce84cee4060bc3c2194bf95d33253c48dc8ff15e197b3b7a00b334ee0017f4" },
+      "config": { "path": "en-US/en_US-libritts_r-medium.onnx.json", "bytes": 20123,    "sha256": "b471dc60d2d8335e819c393d196d6fbf792817f40051257b269878505bc9afb3" },
+      "tokens": { "path": "en-US/tokens.txt",                       "bytes": 954,      "sha256": "620e1aecf1a68fea3ba5850d137b0138fa2037c9b372dad13b95a2a215d0849a" },
+      "phonemes": { "path": "shared/espeak-ng-data.zip",            "bytes": 9186280,  "sha256": "23d69c4091291fbb3cec9c216ce26ee2ad1df198acc4363d260e20712a4d91c4" },
       "speakerId": null,
       "sampleRate": 22050,
       "license": "CC-BY-4.0",
-      "attribution": "LibriTTS-R — CC BY 4.0"
+      "attribution": "LibriTTS-R — CC BY 4.0. See ATTRIBUTION.md"
     },
-    { "language": "en-US", "voice": "male", "…": "same model, different speakerId" },
     {
-      "language": "pt-BR", "voice": "male", "engine": "piper",
-      "model":  { "path": "pt-BR/pt_BR-cadu-medium.onnx", "…": "" },
-      "config": { "path": "pt-BR/pt_BR-cadu-medium.onnx.json", "…": "" },
-      "phonemes": { "path": "shared/espeak-ng-data.zip", "…": "" },
-      "speakerId": null, "sampleRate": 22050, "license": "CC0"
+      "language": "en-US", "voice": "male", "engine": "piper",
+      "model":  { "path": "en-US/en_US-libritts_r-medium.onnx",      "bytes": 78529840, "sha256": "8cce84cee4060bc3c2194bf95d33253c48dc8ff15e197b3b7a00b334ee0017f4" },
+      "config": { "path": "en-US/en_US-libritts_r-medium.onnx.json", "bytes": 20123,    "sha256": "b471dc60d2d8335e819c393d196d6fbf792817f40051257b269878505bc9afb3" },
+      "tokens": { "path": "en-US/tokens.txt",                       "bytes": 954,      "sha256": "620e1aecf1a68fea3ba5850d137b0138fa2037c9b372dad13b95a2a215d0849a" },
+      "phonemes": { "path": "shared/espeak-ng-data.zip",            "bytes": 9186280,  "sha256": "23d69c4091291fbb3cec9c216ce26ee2ad1df198acc4363d260e20712a4d91c4" },
+      "speakerId": null,
+      "sampleRate": 22050,
+      "license": "CC-BY-4.0",
+      "attribution": "LibriTTS-R — CC BY 4.0. See ATTRIBUTION.md"
     }
   ]
 }
