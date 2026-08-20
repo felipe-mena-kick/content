@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "voices": [
+    {
+      "language": "en-US", "voice": "female", "engine": "piper",
+      "model":  { "path": "en-US/en_US-libritts_r-medium.onnx",      "bytes": 82420000, "sha256": "..." },
+      "config": { "path": "en-US/en_US-libritts_r-medium.onnx.json", "bytes": 20100,    "sha256": "..." },
+      "phonemes": { "path": "shared/espeak-ng-data.zip", "bytes": 11000000, "sha256": "..." },
+      "speakerId": null,
+      "sampleRate": 22050,
+      "license": "CC-BY-4.0",
+      "attribution": "LibriTTS-R — CC BY 4.0"
+    },
+    { "language": "en-US", "voice": "male", "…": "same model, different speakerId" },
+    {
+      "language": "pt-BR", "voice": "male", "engine": "piper",
+      "model":  { "path": "pt-BR/pt_BR-cadu-medium.onnx", "…": "" },
+      "config": { "path": "pt-BR/pt_BR-cadu-medium.onnx.json", "…": "" },
+      "phonemes": { "path": "shared/espeak-ng-data.zip", "…": "" },
+      "speakerId": null, "sampleRate": 22050, "license": "CC0"
+    }
+  ]
+}
